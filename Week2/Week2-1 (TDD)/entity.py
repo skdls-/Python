@@ -8,6 +8,8 @@ class Entity(object):
         self.health = health
         self.max_health = health
         self.weapon = None
+        self.i_coord = 0
+        self.j_coord = 0
 
     def get_health(self):
         return self.health
@@ -38,3 +40,11 @@ class Entity(object):
         if self.weapon == None:
             return False
         return True
+
+    def attack(self):
+    	if self.weapon == None:
+    		return 0
+    	elif self.weapon.critical_hit() == True:
+    		return self.weapon.damage * 2
+    	else:
+    		return self.weapon.damage

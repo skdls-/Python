@@ -14,6 +14,9 @@ class Test_Entity(unittest.TestCase):
         self.assertEqual(self.my_entity.name, "Entity")
         self.assertEqual(self.my_entity.health, 100)
         self.assertEqual(self.my_entity.max_health, self.my_entity.health)
+        self.assertEqual(self.my_entity.i_coord, 0)
+        self.assertEqual(self.my_entity.j_coord, 0)
+
 
     def test_is_alive(self):
         self.assertTrue(self.my_entity.is_alive())
@@ -45,9 +48,20 @@ class Test_Entity(unittest.TestCase):
         self.assertEqual(self.my_entity.health, 60)
 
     def test_has_weapon(self):
-    	self.proba = Weapon("axe", 20, 0.5)
+    	self.proba = Weapon("axe", 20, 0.0)
     	self.my_entity.equip_weapon(self.proba)
     	self.assertTrue(self.my_entity.has_weapon())
+
+    def test_attack_with_weapon(self):
+    	self.proba = Weapon("axe", 20, 0.5)
+    	self.my_entity.equip_weapon(self.proba)
+    	self.assertEqual(self.my_entity.attack(),20)
+
+    def test_attack_without_weapon(self):
+    	self.proba = None
+    	self.my_entity.equip_weapon(self.proba)
+    	self.assertEqual(self.my_entity.attack(), 0)
+
 
 if __name__ == '__main__':
     unittest.main()

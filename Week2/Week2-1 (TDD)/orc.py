@@ -15,3 +15,9 @@ class Orc(Entity):
             self.berserk_factor = 1
         else:
             self.berserk_factor = berserk_factor
+
+    def attack(self):
+    	if self.weapon == None:
+    		return 0
+    	return self.weapon.damage * self.berserk_factor
+
