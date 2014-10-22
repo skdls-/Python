@@ -46,7 +46,7 @@ class Dungeon:
         else:
             return False
 
-    def move(self, player_name, direction):
+    """def move(self, player_name, direction):
         self.direction = direction
         if direction == "right":
             for i in range (0, len(self.map_array)):
@@ -56,7 +56,16 @@ class Dungeon:
                         self.map_array[i][j] = '.'
                         self.players[player_name].i_coord = i
                         self.players[player_name].j_coord = j+1
-                        break
+                        break """
+
+    def move(self, player_name, direction):
+        self.direction = direction
+        if direction == "right":
+            if self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord + 1] == '.'and self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] == 'H':
+                self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord + 1] = 'H'
+                self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] = '.'
+                self.players[player_name].j_coord += 1
+
 
 
 def main():
