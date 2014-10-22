@@ -2,6 +2,7 @@ from hero import Hero
 from orc import Orc
 from weapon import Weapon
 from entity import Entity
+from fight import Fight
 
 
 class Dungeon:
@@ -46,44 +47,95 @@ class Dungeon:
         else:
             return False
 
-    """def move(self, player_name, direction):
-        self.direction = direction
-        if direction == "right":
-            for i in range (0, len(self.map_array)):
-                for j in range (0, len(self.map_array[i])-1):
-                    if self.map_array[i][j+1] == '.' and self.map_array[i][j] == 'H' and self.map_array[i][j+1]:
-                        self.map_array[i][j+1] = 'H'
-                        self.map_array[i][j] = '.'
-                        self.players[player_name].i_coord = i
-                        self.players[player_name].j_coord = j+1
-                        break """
+    def that_enemy(self, i_coord2, j_coord2):
+        for i in self.players:
+            if self.players[i].i_coord == i_coord2 and self.players[i].j_coord == j_coord2:
+                return self.players[i] 
 
     def move(self, player_name, direction):
+        pyrva = self.players[player_name].i_coord
+        vtora = self.players[player_name].j_coord
         self.direction = direction
+
         if direction == "right":
-            if self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord + 1] == '.'and self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] == 'H':
-                self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord + 1] = 'H'
-                self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] = '.'
-                self.players[player_name].j_coord += 1
+            """if type(self.players[player_name]) == Hero and self.map_array[pyrva][vtora + 1] == 'O':
+                fight = Fight(players[player_name], that_enemy(pyrva, vtora + 1))
+            
+            elif type(self.players[player_name]) == Orc and self.map_array[pyrva][vtora + 1] == 'H':
+                fight = Fight(players[player_name], that_enemy(pyrva, vtora + 1)) """
+            
+            if self.map_array[pyrva][vtora + 1] == '.':
+                print( "vlizame vyv funkciqta za right")
+                if type(self.players[player_name]) == Hero:
+                    print ("vlizame vyv funkciqta za Hero")
+                    self.map_array[pyrva][vtora + 1] = 'H'
+                    self.map_array[pyrva][vtora] = '.'
+                    print(vtora + 1)
+                    self.players[player_name].j_coord += 1
 
-        if direction == "left":
-            if self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord - 1] == '.'and self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] == 'H':
-                self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord - 1] = 'H'
-                self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] = '.'
-                self.players[player_name].j_coord -= 1
+                elif type(self.players[player_name]) == Orc:
+                    self.map_array[pyrva][vtora + 1] = 'O'
+                    self.map_array[pyrva][vtora] = '.'
+                    self.players[player_name].j_coord += 1
+            else:
+                return False
 
-        if direction == "down":
-            if self.map_array[self.players[player_name].i_coord + 1][self.players[player_name].j_coord] == '.'and self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] == 'H':
-                self.map_array[self.players[player_name].i_coord + 1][self.players[player_name].j_coord] = 'H'
-                self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] = '.'
-                self.players[player_name].i_coord += 1
+        elif direction == "left":
+            if type(self.players[player_name]) == Hero and self.map_array[pyrva][vtora - 1] == 'O':
+                fight = Fight(players[player_name], that_enemy(pyrva, vtora - 1))
+            
+            elif type(self.players[player_name]) == Orc and self.map_array[pyrva][vtora - 1] == 'H':
+                fight = Fight(players[player_name], that_enemy(pyrva, vtora - 1))
 
-        if direction == "up":
-            if self.map_array[self.players[player_name].i_coord - 1][self.players[player_name].j_coord] == '.'and self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] == 'H':
-                self.map_array[self.players[player_name].i_coord - 1][self.players[player_name].j_coord] = 'H'
-                self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] = '.'
-                self.players[player_name].i_coord -= 1
+            if self.map_array[pyrva][vtora - 1] == '.':
+                if type(self.players[player_name]) == Hero:
+                    self.map_array[pyrva][vtora - 1] = 'H'
+                    self.map_array[pyrva][vtora] = '.'
+                    vtora -= 1
+                elif type(self.players[player_name]) == Orc:
+                    self.map_array[pyrva][vtora - 1] = 'O'
+                    self.map_array[pyrva][vtora] = '.'
+                    vtora -= 1
+            else:
+                return False
 
+        elif direction == "down":
+            if type(self.players[player_name]) == Hero and self.map_array[pyrva + 1][vtora] == 'O':
+                fight = Fight(players[player_name], that_enemy(pyrva + 1, vtora))
+            
+            elif type(self.players[player_name]) == Orc and self.map_array[pyrva + 1][vtora] == 'H':
+                fight = Fight(players[player_name], that_enemy(pyrva + 1, vtora))
+
+            elif self.map_array[pyrva + 1][vtora] == '.':
+                if type(self.players[player_name]) == Hero:
+                    self.map_array[pyrva + 1][vtora] = 'H'
+                    self.map_array[pyrva][vtora] = '.'
+                    pyrva += 1
+                elif type(self.players[player_name]) == Orc:
+                    self.map_array[pyrva + 1][vtora] = 'O'
+                    self.map_array[pyrva][vtora] = '.'
+                    pyrva += 1
+            else:
+                return False
+
+        elif direction == "up":
+            if type(self.players[player_name]) == Hero and self.map_array[pyrva - 1][vtora] == 'O':
+                fight = Fight(players[player_name], that_enemy(pyrva - 1, vtora))
+            
+            elif type(self.players[player_name]) == Orc and self.map_array[pyrva - 1][vtora] == 'H':
+                fight = Fight(players[player_name], that_enemy(pyrva - 1, vtora))
+
+            if self.map_array[pyrva - 1][vtora] == '.':
+                if type(self.players[player_name]) == Hero:
+                    self.map_array[pyrva - 1][vtora] = 'H'
+                    self.map_array[pyrva][vtora] = '.'
+                    pyrva -= 1
+                elif type(self.players[player_name]) == Orc:
+                    self.map_array[pyrva - 1][vtora] = 'O'
+                    self.map_array[pyrva][vtora] = '.'
+                    pyrva -= 1
+            else:
+                return False
 
 
 
@@ -91,18 +143,14 @@ class Dungeon:
 def main():
     map = Dungeon("dungeon_map")
     goshko = Hero("Hero", 100, "Hero")
+    Orko = Orc("Orko", 100, 1.5)
     map.spawn("Goshko", goshko)
-    map.print_map()
     map.move("Goshko", "right")
     map.print_map()
-    print(map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
-    map.move("Goshko", "down")
+    print (map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
+    print(map.move("Goshko", "right")
     map.print_map()
-    print(map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
-    map.move("Goshko", "up")
-    map.print_map()
-    print(map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
-
+    print (map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
 
 if __name__ == '__main__':
     main()
