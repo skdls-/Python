@@ -65,12 +65,9 @@ class Dungeon:
                 fight = Fight(players[player_name], that_enemy(pyrva, vtora + 1)) """
             
             if self.map_array[pyrva][vtora + 1] == '.':
-                print( "vlizame vyv funkciqta za right")
                 if type(self.players[player_name]) == Hero:
-                    print ("vlizame vyv funkciqta za Hero")
                     self.map_array[pyrva][vtora + 1] = 'H'
                     self.map_array[pyrva][vtora] = '.'
-                    print(vtora + 1)
                     self.players[player_name].j_coord += 1
 
                 elif type(self.players[player_name]) == Orc:
@@ -81,40 +78,40 @@ class Dungeon:
                 return False
 
         elif direction == "left":
-            if type(self.players[player_name]) == Hero and self.map_array[pyrva][vtora - 1] == 'O':
+            """if type(self.players[player_name]) == Hero and self.map_array[pyrva][vtora - 1] == 'O':
                 fight = Fight(players[player_name], that_enemy(pyrva, vtora - 1))
             
             elif type(self.players[player_name]) == Orc and self.map_array[pyrva][vtora - 1] == 'H':
-                fight = Fight(players[player_name], that_enemy(pyrva, vtora - 1))
+                fight = Fight(players[player_name], that_enemy(pyrva, vtora - 1)) """
 
             if self.map_array[pyrva][vtora - 1] == '.':
                 if type(self.players[player_name]) == Hero:
                     self.map_array[pyrva][vtora - 1] = 'H'
                     self.map_array[pyrva][vtora] = '.'
-                    vtora -= 1
+                    self.players[player_name].j_coord -= 1
                 elif type(self.players[player_name]) == Orc:
                     self.map_array[pyrva][vtora - 1] = 'O'
                     self.map_array[pyrva][vtora] = '.'
-                    vtora -= 1
+                    self.players[player_name].j_coord -= 1
             else:
                 return False
 
         elif direction == "down":
-            if type(self.players[player_name]) == Hero and self.map_array[pyrva + 1][vtora] == 'O':
+            """if type(self.players[player_name]) == Hero and self.map_array[pyrva + 1][vtora] == 'O':
                 fight = Fight(players[player_name], that_enemy(pyrva + 1, vtora))
             
             elif type(self.players[player_name]) == Orc and self.map_array[pyrva + 1][vtora] == 'H':
-                fight = Fight(players[player_name], that_enemy(pyrva + 1, vtora))
+                fight = Fight(players[player_name], that_enemy(pyrva + 1, vtora)) """
 
-            elif self.map_array[pyrva + 1][vtora] == '.':
+            if self.map_array[pyrva + 1][vtora] == '.':
                 if type(self.players[player_name]) == Hero:
                     self.map_array[pyrva + 1][vtora] = 'H'
                     self.map_array[pyrva][vtora] = '.'
-                    pyrva += 1
+                    self.players[player_name].i_coord += 1
                 elif type(self.players[player_name]) == Orc:
                     self.map_array[pyrva + 1][vtora] = 'O'
                     self.map_array[pyrva][vtora] = '.'
-                    pyrva += 1
+                    self.players[player_name].i_coord += 1
             else:
                 return False
 
@@ -129,11 +126,11 @@ class Dungeon:
                 if type(self.players[player_name]) == Hero:
                     self.map_array[pyrva - 1][vtora] = 'H'
                     self.map_array[pyrva][vtora] = '.'
-                    pyrva -= 1
+                    self.players[player_name].i_coord -= 1
                 elif type(self.players[player_name]) == Orc:
                     self.map_array[pyrva - 1][vtora] = 'O'
                     self.map_array[pyrva][vtora] = '.'
-                    pyrva -= 1
+                    self.players[player_name].i_coord -= 1
             else:
                 return False
 
@@ -148,7 +145,10 @@ def main():
     map.move("Goshko", "right")
     map.print_map()
     print (map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
-    print(map.move("Goshko", "right")
+    print(map.move("Goshko", "down"))
+    map.print_map()
+    print (map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
+    print(map.move("Goshko", "up"))
     map.print_map()
     print (map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
 
