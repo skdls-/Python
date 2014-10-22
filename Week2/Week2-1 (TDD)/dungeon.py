@@ -72,6 +72,20 @@ class Dungeon:
                 self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] = '.'
                 self.players[player_name].j_coord -= 1
 
+        if direction == "down":
+            if self.map_array[self.players[player_name].i_coord + 1][self.players[player_name].j_coord] == '.'and self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] == 'H':
+                self.map_array[self.players[player_name].i_coord + 1][self.players[player_name].j_coord] = 'H'
+                self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] = '.'
+                self.players[player_name].i_coord += 1
+
+        if direction == "up":
+            if self.map_array[self.players[player_name].i_coord - 1][self.players[player_name].j_coord] == '.'and self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] == 'H':
+                self.map_array[self.players[player_name].i_coord - 1][self.players[player_name].j_coord] = 'H'
+                self.map_array[self.players[player_name].i_coord][self.players[player_name].j_coord] = '.'
+                self.players[player_name].i_coord -= 1
+
+
+
 
 
 def main():
@@ -82,10 +96,12 @@ def main():
     map.move("Goshko", "right")
     map.print_map()
     print(map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
-    map.move("Goshko", "left")
+    map.move("Goshko", "down")
     map.print_map()
     print(map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
-
+    map.move("Goshko", "up")
+    map.print_map()
+    print(map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
 
 
 if __name__ == '__main__':
