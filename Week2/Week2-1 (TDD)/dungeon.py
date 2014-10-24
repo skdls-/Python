@@ -97,11 +97,12 @@ class Dungeon:
                 return False
 
         elif direction == "down":
-            """if type(self.players[player_name]) == Hero and self.map_array[pyrva + 1][vtora] == 'O':
+            if type(self.players[player_name]) == Hero and self.map_array[pyrva + 1][vtora] == 'O':
                 fight = Fight(players[player_name], that_enemy(pyrva + 1, vtora))
+                print(fight)
 
             elif type(self.players[player_name]) == Orc and self.map_array[pyrva + 1][vtora] == 'H':
-                fight = Fight(players[player_name], that_enemy(pyrva + 1, vtora)) """
+                fight = Fight(players[player_name], that_enemy(pyrva + 1, vtora)) 
 
             if self.map_array[pyrva + 1][vtora] == '.':
                 if type(self.players[player_name]) == Hero:
@@ -148,12 +149,24 @@ def main():
     map.spawn("Orko2", Orko2)
     map.spawn("Orko3", Orko3)
     map.move("Goshko", "right")
-    map.print_map()
-    print (map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
-    print(map.move("Goshko", "down"))
-    map.print_map()
-    print (map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
-    print(map.move("Goshko", "up"))
+    map.move("Goshko", "down")
+    map.move("Goshko", "down")
+    map.move("Goshko", "down")
+    map.move("Goshko", "right")
+    map.move("Goshko", "right")
+    map.move("Goshko", "right")
+    map.move("Goshko", "right")
+    map.move("Goshko", "up")
+    map.move("Goshko", "up")
+    map.move("Goshko", "up")
+    map.move("Goshko", "up")
+    map.move("Goshko", "right")
+    map.move("Goshko", "right")
+    map.move("Goshko", "right")
+    map.move("Goshko", "right")
+    map.move("Goshko", "down")
+    map.move("Goshko", "down")
+    map.move("Goshko", "down")
     map.print_map()
     print (map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
     map.move("Orko", "up")
