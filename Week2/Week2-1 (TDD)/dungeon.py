@@ -143,25 +143,21 @@ def main():
     Orko = Orc("Orko", 100, 1.5)
     Orko2 = Orc("Orko2", 100, 1.4)
     Orko3 = Orc("Orko3", 100, 1.4)
-    #map.spawn("Goshko", goshko)
-    """map.spawn("Orko", Orko)
+    map.spawn("Goshko", goshko)
+    map.spawn("Orko", Orko)
     map.spawn("Orko2", Orko2)
     map.spawn("Orko3", Orko3)
-    #map.move("Goshko", "right")
-    map.print_map()"""
-
-    map.spawn("Orko", Orko)
+    map.move("Goshko", "right")
     map.print_map()
-    map.spawn("Orko2", Orko2)
-    map.print_map()
-    """print (map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
+    print (map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
     print(map.move("Goshko", "down"))
     map.print_map()
     print (map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
     print(map.move("Goshko", "up"))
     map.print_map()
     print (map.players["Goshko"].i_coord, map.players["Goshko"].j_coord)
-    map.move("Orko", "up")"""
+    map.move("Orko", "up")
+    map.print_map()
 
 if __name__ == '__main__':
     main()
