@@ -1,0 +1,29 @@
+{
+    "songs": [
+        {
+            "album": "Album",
+            "title": "Title1",
+            "rating": 5.0,
+            "bitrate": 320,
+            "artist": "Artist",
+            "length": 4
+        },
+        {
+            "album": "Album",
+            "title": "Title2",
+            "rating": 2.0,
+            "bitrate": 320,
+            "artist": "Artist",
+            "length": 2
+        },
+        {
+            "album": "Album",
+            "title": "Title3",
+            "rating": 5.0,
+            "bitrate": 128,
+            "artist": "Artist2",
+            "length": 4
+        }
+    ],
+    "name": "playlist1"
+}

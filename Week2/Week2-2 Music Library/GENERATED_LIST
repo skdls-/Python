@@ -1,0 +1,55 @@
+{
+    "songs": [
+        {
+            "artist": [
+                "Bring Me The Horizon"
+            ],
+            "length": null,
+            "rating": null,
+            "album": [
+                "Sempiternal"
+            ],
+            "bitrate": null,
+            "title": [
+                "Deathbeds"
+            ]
+        },
+        {
+            "artist": null,
+            "length": null,
+            "rating": null,
+            "album": null,
+            "bitrate": null,
+            "title": null
+        },
+        {
+            "artist": [
+                "Avenged Sevenfold"
+            ],
+            "length": null,
+            "rating": null,
+            "album": [
+                "Nightmare"
+            ],
+            "bitrate": null,
+            "title": [
+                "So Far Away"
+            ]
+        },
+        {
+            "artist": [
+                "Turbonegro"
+            ],
+            "length": null,
+            "rating": null,
+            "album": [
+                "Retox"
+            ],
+            "bitrate": null,
+            "title": [
+                "We're Gonna Drop The Atom Bomb"
+            ]
+        }
+    ],
+    "name": "GENERATED_LIST"
+}
