@@ -5,18 +5,24 @@ class TicTacToe():
 
     def __init__(self, board):
         self.board = board
+        self.AI_wins = 0
+        self.my_wins = 0
 
     def print_my_board(self):
         print_board(self.board)
 
-    def game_not_over(self):
+    def game_over(self):
         if win_by_diagonal(self.board) or win_by_col(self.board) or win_by_row(self.board):
-            return False
-        return True
+            return True
+        return False
 
     def place_x(self):
         row = input("Row: ")
         col = input("Col: ")
+        while int(row) > 2 or int(col) > 2:
+            print("Add numbers only between 0 and 2")
+            row = input("Row: ")
+            col = input("Col: ")
         if self.board[int(row)][int(col)] != "X" and self.board[int(row)][int(col)] != "O":
             self.board[int(row)][int(col)] = 'X'
         else:
@@ -42,11 +48,7 @@ class TicTacToe():
         # returns a list of the potential winning rows
         winning_rows = [row for row in mapped if has_two_o(row)]
         # if there are such rows
-        #corner protection
-        if first_move_x_corner(self.board):
-            self.board[1][1] = "O"
-            return
-#offensive part
+# offensive part
         if winning_rows != []:
             for row in self.board:
                 if has_two_o(row):
@@ -80,6 +82,12 @@ class TicTacToe():
                     self.board[2][0] = 'O'
                 return
 # defending part
+        elif first_move_x_corner(self.board):
+            self.board[1][1] = "O"
+            return
+        elif block_fork_try(self.board):
+            self.board[1][0] = "O"
+            return
         elif danger_rows != []:
             for row in self.board:
                 if has_two_x(row):
@@ -116,18 +124,33 @@ class TicTacToe():
             self.AI_place_random_O()
 
     def one_game(self):
-        while self.game_not_over():
+        if not self.game_over() and not has_free_spots(self.board):
+            print ("Nobody Wins!")
+            self.print_my_board()
+        while not self.game_over() and has_free_spots(self.board):
             self.print_my_board()
             self.place_x()
-            if self.game_not_over():
-                self.AI_place_O()
-                if not self.game_not_over():
-                    print ("Winner is the: O")
-                    self.print_my_board()                  
+            if self.game_over():
+                print ("You win!")
+                self.my_wins += 1
             else:
-                print ("Winner is the: X")
-                self.print_my_board()
+                self.AI_place_O()
+                if self.game_over():
+                    print ("Hah, looser! :)")
+                    self.AI_wins += 1
+        self.print_my_board()
+        print ("---------------")
+        print ("Your wins: ", self.my_wins)
+        print ("Computer wins: ", self.AI_wins)
+        print ("---------------")
+        print (
+            "Nice! One more time?\nPress Ctrl+C to exit if tired of playing!")
+        self.board = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
+        self.one_game()
 
+print (
+    "Hello! Welcome to the TicTacToe game!\nYou play with the X and you go first!")
+print (
+    "To place your X, add its coordinates.\nFor example Row:1, Col:1 would place X at position 5")
 tictac = TicTacToe([["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]])
 tictac.one_game()
-

@@ -1,7 +1,5 @@
 from random import randint
 
-print("The computer plays with O-s")
-
 
 def print_board(board):
     for i, row in enumerate(board):
@@ -29,7 +27,6 @@ def rows_to_cols(board):
 def win_by_row(board):
     for row in board:
         if all_same(row):
-            #print ("Winner is the: ", row[0])
             return True
     return False
 
@@ -150,6 +147,7 @@ def has_free_spots(board):
                 return True
     return False
 
+
 def has_one_x(board):
     count_x = 0
     for row in board:
@@ -157,6 +155,7 @@ def has_one_x(board):
             if elem == "X":
                 count_x += 1
     return count_x == 1
+
 
 def first_move_x_corner(board):
     corner_x = 0
@@ -166,3 +165,24 @@ def first_move_x_corner(board):
             if corner == "X":
                 corner_x += 1
     return corner_x == 1
+
+
+def two_x_one_o(board):
+    count_x = 0
+    count_o = 0
+    for row in board:
+        for elem in row:
+            if elem == "X":
+                count_x += 1
+            elif elem == 'O':
+                count_o += 1
+    return count_x == 2 and count_o == 1
+
+
+def block_fork_try(board):
+    diag1 = get_diagonal(board)
+    diag2 = get_other_diagonal(board)
+    if two_x_one_o(board):
+        if diag1 == ["X", "O", "X"] or diag2 == ["X", "O", "X"]:
+            return True
+    return False
