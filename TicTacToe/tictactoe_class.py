@@ -42,6 +42,10 @@ class TicTacToe():
         # returns a list of the potential winning rows
         winning_rows = [row for row in mapped if has_two_o(row)]
         # if there are such rows
+        #corner protection
+        if first_move_x_corner(self.board):
+            self.board[1][1] = "O"
+            return
 #offensive part
         if winning_rows != []:
             for row in self.board:

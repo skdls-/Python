@@ -149,3 +149,20 @@ def has_free_spots(board):
             if elem != "X" and elem != 'O':
                 return True
     return False
+
+def has_one_x(board):
+    count_x = 0
+    for row in board:
+        for elem in row:
+            if elem == "X":
+                count_x += 1
+    return count_x == 1
+
+def first_move_x_corner(board):
+    corner_x = 0
+    corners = [board[0][0], board[0][2], board[2][0], board[2][2]]
+    if has_one_x(board):
+        for corner in corners:
+            if corner == "X":
+                corner_x += 1
+    return corner_x == 1
