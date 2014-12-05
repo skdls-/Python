@@ -115,7 +115,8 @@ class TicTacToe():
             self.board[1][1] = "O"
             return
         elif first_move_x_middle(self.board):
-        	self.board[0][0] = "O"
+            self.board[0][0] = "O"
+            return
         elif block_fork_try(self.board):
             self.board[1][0] = "O"
             return
