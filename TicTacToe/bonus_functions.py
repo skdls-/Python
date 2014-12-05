@@ -175,6 +175,7 @@ def first_move_x_corner(board):
                 corner_x += 1
     return corner_x == 1
 
+
 def first_move_x_middle(board):
     if has_one_x(board) and board[1][1] == "X":
         return True
@@ -200,3 +201,29 @@ def block_fork_try(board):
         if diag1 == ["X", "O", "X"] or diag2 == ["X", "O", "X"]:
             return True
     return False
+
+
+def has_free_corner(board):
+    corners = [board[0][0], board[0][2], board[2][0], board[2][2]]
+    for corner in corners:
+        if corner != "X" and corner != "O":
+            return True
+    return False
+
+
+def mark_free_corner_O(board):
+    ind1 = randint(0, 1)
+    if ind1 == 1:
+        ind1 = 2
+    ind2 = randint(0, 1)
+    if ind2 == 1:
+        ind2 = 2
+    if board[ind1][ind2] != "X" and board[ind1][ind2] != "O":
+        board[ind1][ind2] = "O"
+    else:
+        mark_free_corner_O(board)
+
+my_board = [["O", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
+mark_free_corner_O(my_board)
+print(my_board)
+print ("Hui")

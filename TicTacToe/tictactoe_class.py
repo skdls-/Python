@@ -61,6 +61,8 @@ class TicTacToe():
     def AI_place_random_O(self):
         if not has_free_spots(self.board):
             print ("Nobody wins!")
+        elif has_free_corner(self.board):
+            mark_free_corner_O(self.board)
         else:
             row = randint(0, 2)
             col = randint(0, 2)
