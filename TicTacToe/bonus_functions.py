@@ -175,6 +175,11 @@ def first_move_x_corner(board):
                 corner_x += 1
     return corner_x == 1
 
+def first_move_x_middle(board):
+    if has_one_x(board) and board[1][1] == "X":
+        return True
+    return False
+
 
 def two_x_one_o(board):
     count_x = 0
