@@ -1,4 +1,4 @@
-from tictactoe import *
+from bonus_functions import *
 
 
 class TicTacToe():
@@ -17,14 +17,43 @@ class TicTacToe():
         return False
 
     def place_x(self):
-        row = input("Row: ")
-        col = input("Col: ")
-        while int(row) > 2 or int(col) > 2:
-            print("Add numbers only between 0 and 2")
-            row = input("Row: ")
-            col = input("Col: ")
-        if self.board[int(row)][int(col)] != "X" and self.board[int(row)][int(col)] != "O":
-            self.board[int(row)][int(col)] = 'X'
+        row = 0
+        col = 0
+        position = input("Position: ")
+        position = int(position)
+        while int(position) > 9 or int(position) < 1:
+            print("Add numbers only between 0 and 9")
+            position = input("Position: ")
+        else:
+            if position == 1:
+                row = 0
+                col = 0
+            elif position == 2:
+                row = 0
+                col = 1
+            elif position == 3:
+                row = 0
+                col = 2
+            elif position == 4:
+                row = 1
+                col = 0
+            elif position == 5:
+                row = 1
+                col = 1
+            elif position == 6:
+                row = 1
+                col = 2
+            elif position == 7:
+                row = 2
+                col = 0
+            elif position == 8:
+                row = 2
+                col = 1
+            elif position == 9:
+                row = 2
+                col = 2
+        if self.board[row][col] != "X" and self.board[row][col] != "O":
+            self.board[row][col] = 'X'
         else:
             print ("Taken! Try again! ")
             self.place_x()
@@ -147,10 +176,3 @@ class TicTacToe():
             "Nice! One more time?\nPress Ctrl+C to exit if tired of playing!")
         self.board = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
         self.one_game()
-
-print (
-    "Hello! Welcome to the TicTacToe game!\nYou play with the X and you go first!")
-print (
-    "To place your X, add its coordinates.\nFor example Row:1, Col:1 would place X at position 5")
-tictac = TicTacToe([["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]])
-tictac.one_game()
