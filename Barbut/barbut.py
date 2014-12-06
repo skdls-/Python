@@ -61,6 +61,7 @@ class Barbut():
             self.current_player = 0
             self.print_scores()
             print ("Current Player: ", self.current_player)
+        self.players[self.current_player].dices_to_risk_with = 3
 
     def player_turn(self, player):
         while self.players[self.current_player].dices_to_risk_with != 0:
@@ -102,7 +103,8 @@ class Barbut():
 
     def game(self):
         while not self.game_finished():
-            self.player_turn(self.players[self.current_player])
+            current_player = self.current_player
+            self.player_turn(self.players[current_player])
         else:
             print("Game Finished!")
 
