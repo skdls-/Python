@@ -9,16 +9,18 @@ class Barbut():
         self.players_count = players_count
         self.players = []
         for i in range(0, players_count):
-            name = input("Name of next player number ")
+            name = input("Name of next player: ")
             player = Player(name)
             self.players.append(player)
         self.current_player = 0
         self.points_to_win = points_to_win
 
     def print_scores(self):
+        print ("----------------")
         for i in range(0, self.players_count):
             print (self.players[i].name)
             print (self.players[i].score)
+        print ("----------------")
 
     def throw_dice(self, count):
         dices = []
@@ -39,12 +41,15 @@ class Barbut():
             return 200
         elif consecutive(dices):
             return 200
-        elif 1 in dices:
-            ones_count = 1
-            return ones_count * 100
-        elif 5 in dices:
-            fives_count = 1
-            return fives_count * 50
+        elif 1 in dices or 5 in dices:
+            ones_count = 0
+            fives_count =0
+            for dice in dices:
+                if dice == 5:
+                    fives_count += 1
+                elif dice == 1:
+                    ones_count += 1
+            return ones_count * 100 + fives_count * 50
         else:
             return 0
 
@@ -56,16 +61,15 @@ class Barbut():
 
     def iter_players(self):
         self.current_player += 1
-        print ("I incremented!")
         if self.current_player == self.players_count:
             self.current_player = 0
             self.print_scores()
-            print ("Current Player: ", self.current_player)
         self.players[self.current_player].dices_to_risk_with = 3
 
     def player_turn(self, player):
         while self.players[self.current_player].dices_to_risk_with != 0:
             print (self.players[self.current_player].name, "'s turn: ")
+            print ("Temp score:", self.players[self.current_player].temp_score)
             risk_it = input("Do you want to risk: y/n?")
             if risk_it == "n":
                 self.players[self.current_player].score += self.players[self.current_player].temp_score
