@@ -84,6 +84,7 @@ class Barbut():
                 print("Dices  to risk with: ", self.players[self.current_player].dices_to_risk_with)
                 self.player_turn(player)
         else:
+            self.players[self.current_player].temp_score = 0
             self.iter_players()
             return
 
