@@ -116,5 +116,5 @@ class Barbut():
 
 count_of_players = input("Count of players: ")
 score_to_win = input("Score to win: ")
-barbut = Barbut(count_of_players, score_to_win)
+barbut = Barbut(int(count_of_players), int(score_to_win))
 barbut.game()
