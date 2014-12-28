@@ -36,6 +36,3 @@ def consecutive(items):
         return True
     else:
         return False
-
-
-print (all_same_three([2, 2, 2]))

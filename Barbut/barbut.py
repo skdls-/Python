@@ -81,6 +81,9 @@ class Barbut():
                 print (move)
                 self.players[self.current_player].temp_score += self.dice_combinations(move)
                 self.dices_to_risk_with(move, self.players[self.current_player])
+                if move == [6,6,6]:
+                    self.players[self.current_player].score = 0
+                    self.players[self.current_player].temp_score = 0
                 print("Dices  to risk with: ", self.players[self.current_player].dices_to_risk_with)
                 self.player_turn(player)
         else:
@@ -91,6 +94,8 @@ class Barbut():
     def dices_to_risk_with(self, dices, player):
         if dices == [1, 1, 1]:
             player.dices_to_risk_with = 3
+        elif dices == [6,6,6]:
+            player.dices_to_risk_with = 0
         elif all_same_three(dices):
             player.dices_to_risk_with = 3
         elif one_three_five(dices) or two_four_six(dices):

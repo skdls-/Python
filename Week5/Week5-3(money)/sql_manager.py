@@ -86,3 +86,4 @@ def login(username, password):
         id = cursor.execute('SELECT id FROM clients WHERE username = ?', (username,)).fetchone()
         cursor.execute('UPDATE clients SET failed_logins = ?, last_login = ? WHERE id = ?', (login_attempts, timestamp_now, id))
         return False # Gr@b@na!!!
+

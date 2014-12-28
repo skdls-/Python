@@ -7,7 +7,7 @@ class Entity(object):
         self.name = name
         self.health = health
         self.max_health = health
-        self.weapon = None
+        self.weapon = Weapon("Axe", 6, 0.5)
         self.i_coord = 0
         self.j_coord = 0
 
